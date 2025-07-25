@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -7,40 +8,51 @@ export default function Contact() {
     name: '',
     phone: '',
     email: '',
+    service: 'shipping',
     destination: '',
     weight: '',
     description: '',
-    service: 'shipping'
+    message: ''
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setShowSuccess(true);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      destination: '',
-      weight: '',
-      description: '',
-      service: 'shipping'
-    });
-    
-    // Hide success message after 3 seconds
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 3000);
+
+    try {
+      const response = await fetch('https://readdy.ai/api/form-submission', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          formId: 'contact-form',
+          ...formData
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ 
+          name: '', 
+          phone: '', 
+          email: '', 
+          service: 'shipping', 
+          destination: '',
+          weight: '',
+          description: '',
+          message: '' 
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -69,7 +81,7 @@ export default function Contact() {
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
                 Gửi Yêu Cầu
               </h3>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -177,7 +189,7 @@ export default function Contact() {
                     placeholder="Mô tả chi tiết hàng hóa cần gửi, yêu cầu đặc biệt..."
                   />
                   <div className="text-right text-xs text-gray-500 mt-1">
-                    {formData.description.length}/500
+                    {(formData.description || '').length}/500
                   </div>
                 </div>
 
@@ -190,7 +202,7 @@ export default function Contact() {
                 </button>
               </form>
 
-              {showSuccess && (
+              {submitStatus === 'success' && (
                 <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <div className="flex items-center">
                     <i className="ri-checkbox-circle-fill text-green-500 text-xl mr-3"></i>
@@ -205,6 +217,21 @@ export default function Contact() {
                   </div>
                 </div>
               )}
+              {submitStatus === 'error' && (
+                <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <div className="flex items-center">
+                    <i className="ri-error-warning-fill text-red-500 text-xl mr-3"></i>
+                    <div>
+                      <p className="text-red-800 font-medium">
+                        Gửi yêu cầu thất bại!
+                      </p>
+                      <p className="text-red-600 text-sm">
+                        Vui lòng thử lại sau.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Contact Info */}
@@ -213,7 +240,7 @@ export default function Contact() {
                 <h3 className="text-2xl font-bold mb-6">
                   Thông Tin Liên Hệ
                 </h3>
-                
+
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
@@ -224,7 +251,7 @@ export default function Contact() {
                       <p className="text-lg font-semibold">0901 234 567</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
                       <i className="ri-message-fill text-xl"></i>
@@ -234,7 +261,7 @@ export default function Contact() {
                       <p className="text-lg font-semibold">0901 234 567</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
                       <i className="ri-time-fill text-xl"></i>

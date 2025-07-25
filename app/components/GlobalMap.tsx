@@ -1,10 +1,11 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 
 export default function GlobalMap() {
   const [currentPath, setCurrentPath] = useState(0);
-  
+
   const destinations = [
     { name: 'Hoa Kỳ', position: { top: '35%', left: '20%' }, flag: '🇺🇸' },
     { name: 'Canada', position: { top: '25%', left: '18%' }, flag: '🇨🇦' },
@@ -20,6 +21,29 @@ export default function GlobalMap() {
 
   const vietnamPosition = { top: '50%', left: '70%' };
 
+  const regions = [
+    {
+      name: 'Châu Á - Thái Bình Dương',
+      countries: ['Nhật Bản', 'Hàn Quốc', 'Trung Quốc', 'Singapore', 'Úc', 'New Zealand'],
+      color: 'bg-blue-500'
+    },
+    {
+      name: 'Châu Âu',
+      countries: ['Đức', 'Pháp', 'Anh', 'Ý', 'Tây Ban Nha', 'Hà Lan'],
+      color: 'bg-green-500'
+    },
+    {
+      name: 'Bắc Mỹ',
+      countries: ['Hoa Kỳ', 'Canada', 'Mexico'],
+      color: 'bg-purple-500'
+    },
+    {
+      name: 'Châu Phi & Trung Đông',
+      countries: ['Nam Phi', 'UAE', 'Qatar', 'Kuwait'],
+      color: 'bg-orange-500'
+    }
+  ];
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentPath((prev) => (prev + 1) % destinations.length);
@@ -28,7 +52,7 @@ export default function GlobalMap() {
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <section id="global-map" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -40,16 +64,16 @@ export default function GlobalMap() {
         </div>
 
         <div className="relative max-w-6xl mx-auto">
-          <div 
+          <div
             className="relative w-full h-96 bg-cover bg-center rounded-2xl overflow-hidden shadow-2xl"
             style={{
               backgroundImage: `url('https://readdy.ai/api/search-image?query=world%20map%20with%20clean%20modern%20design%2C%20light%20blue%20and%20white%20color%20scheme%2C%20professional%20business%20style%2C%20continents%20clearly%20visible%2C%20suitable%20for%20logistics%20and%20shipping%20visualization&width=1200&height=600&seq=worldmap1&orientation=landscape')`
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/20 to-blue-900/40"></div>
-            
+
             {/* Vietnam marker */}
-            <div 
+            <div
               className="absolute transform -translate-x-1/2 -translate-y-1/2 z-20"
               style={vietnamPosition}
             >
@@ -71,9 +95,11 @@ export default function GlobalMap() {
                 style={dest.position}
               >
                 <div className="relative">
-                  <div className={`w-5 h-5 rounded-full border-3 border-white shadow-lg transition-colors duration-500 ${
-                    index === currentPath ? 'bg-green-500' : 'bg-blue-500'
-                  }`}></div>
+                  <div
+                    className={`w-5 h-5 rounded-full border-3 border-white shadow-lg transition-colors duration-500 ${
+                      index === currentPath ? 'bg-green-500' : 'bg-blue-500'
+                    }`}
+                  ></div>
                   <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap">
                     {dest.flag} {dest.name}
                   </div>
@@ -87,9 +113,13 @@ export default function GlobalMap() {
                 <path
                   id={`flight-path-${currentPath}`}
                   d={`M ${vietnamPosition.left} ${vietnamPosition.top} Q ${
-                    (parseFloat(vietnamPosition.left) + parseFloat(destinations[currentPath].position.left.replace('%', ''))) / 2
+                    (parseFloat(vietnamPosition.left) + parseFloat(destinations[currentPath].position.left.replace('%', ''))) /
+                    2
                   }% ${
-                    Math.min(parseFloat(vietnamPosition.top.replace('%', '')), parseFloat(destinations[currentPath].position.top.replace('%', ''))) - 10
+                    Math.min(
+                      parseFloat(vietnamPosition.top.replace('%', '')),
+                      parseFloat(destinations[currentPath].position.top.replace('%', ''))
+                    ) - 10
                   }% ${destinations[currentPath].position.left} ${destinations[currentPath].position.top}`}
                 />
               </defs>
@@ -99,9 +129,14 @@ export default function GlobalMap() {
                 fill="none"
                 strokeDasharray="5,5"
                 d={`M ${vietnamPosition.left} ${vietnamPosition.top} Q ${
-                  (parseFloat(vietnamPosition.left.replace('%', '')) + parseFloat(destinations[currentPath].position.left.replace('%', ''))) / 2
+                  (parseFloat(vietnamPosition.left.replace('%', '')) +
+                    parseFloat(destinations[currentPath].position.left.replace('%', ''))) /
+                  2
                 }% ${
-                  Math.min(parseFloat(vietnamPosition.top.replace('%', '')), parseFloat(destinations[currentPath].position.top.replace('%', ''))) - 10
+                  Math.min(
+                    parseFloat(vietnamPosition.top.replace('%', '')),
+                    parseFloat(destinations[currentPath].position.top.replace('%', ''))
+                  ) - 10
                 }% ${destinations[currentPath].position.left} ${destinations[currentPath].position.top}`}
                 className="animate-pulse"
               />
@@ -109,11 +144,16 @@ export default function GlobalMap() {
 
             {/* Flying airplane */}
             <div className="absolute z-30">
-              <div 
+              <div
                 className="w-8 h-8 flex items-center justify-center text-2xl transition-all duration-2000 ease-in-out"
                 style={{
-                  top: `${(parseFloat(vietnamPosition.top.replace('%', '')) + parseFloat(destinations[currentPath].position.top.replace('%', ''))) / 2 - 5}%`,
-                  left: `${(parseFloat(vietnamPosition.left.replace('%', '')) + parseFloat(destinations[currentPath].position.left.replace('%', ''))) / 2}%`,
+                  top: `${(parseFloat(vietnamPosition.top.replace('%', '')) +
+                    parseFloat(destinations[currentPath].position.top.replace('%', ''))) /
+                    2 -
+                    5}%`,
+                  left: `${(parseFloat(vietnamPosition.left.replace('%', '')) +
+                    parseFloat(destinations[currentPath].position.left.replace('%', ''))) /
+                    2}%`,
                   transform: 'translate(-50%, -50%)'
                 }}
               >

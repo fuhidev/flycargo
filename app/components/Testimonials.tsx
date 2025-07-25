@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -8,51 +9,30 @@ export default function Testimonials() {
   const testimonials = [
     {
       id: 1,
-      name: 'Nguyễn Thị Hương',
-      location: 'Hà Nội → Hoa Kỳ',
-      message: 'Tôi đã gửi quà cho con gái ở Mỹ qua dịch vụ này. Rất hài lòng với chất lượng đóng gói và tốc độ giao hàng. Hàng đến tay con đúng thời gian và nguyên vẹn.',
+      name: 'Nguyễn Thị Mai',
+      location: 'Hà Nội',
+      avatar: 'https://readdy.ai/api/search-image?query=professional%20asian%20woman%20smiling%20warmly%2C%20business%20portrait%2C%20clean%20background%2C%20friendly%20expression%2C%20modern%20professional%20headshot&width=80&height=80&seq=avatar1&orientation=squarish',
+      message: 'Tôi đã sử dụng dịch vụ gửi hàng cho con gái đang học ở Úc. Hàng đến nơi nhanh chóng và an toàn. Nhân viên tư vấn rất nhiệt tình và chuyên nghiệp.',
       rating: 5,
       date: '2 tuần trước'
     },
     {
       id: 2,
-      name: 'Trần Văn Minh',
-      location: 'TP.HCM → Canada',
-      message: 'Dịch vụ tuyệt vời! Tôi cần gửi gấp một số giấy tờ quan trọng cho anh trai ở Canada. Nhân viên hỗ trợ rất nhiệt tình, giải đáp mọi thắc mắc và cập nhật tình hình thường xuyên.',
+      name: 'Trần Văn Hùng',
+      location: 'TP.HCM',
+      avatar: 'https://readdy.ai/api/search-image?query=professional%20asian%20man%20smiling%20confidently%2C%20business%20portrait%2C%20clean%20background%2C%20friendly%20expression%2C%20modern%20professional%20headshot&width=80&height=80&seq=avatar2&orientation=squarish',
+      message: 'Dịch vụ mua hàng giúp rất tiện lợi. Tôi đã mua được nhiều sản phẩm từ Nhật Bản mà không cần phải tự đi. Giá cả hợp lý và chất lượng tốt.',
       rating: 5,
       date: '1 tuần trước'
     },
     {
       id: 3,
       name: 'Phạm Thị Lan',
-      location: 'Đà Nẵng → Úc',
-      message: 'Lần đầu sử dụng dịch vụ, tôi khá lo lắng. Nhưng ekip đã hỗ trợ tôi từ A-Z, từ mua hàng đến đóng gói và vận chuyển. Chồng tôi ở Úc nhận được hàng rất vui.',
+      location: 'Đà Nẵng',
+      avatar: 'https://readdy.ai/api/search-image?query=professional%20asian%20woman%20smiling%20warmly%2C%20business%20portrait%2C%20clean%20background%2C%20friendly%20expression%2C%20modern%20professional%20headshot&width=80&height=80&seq=avatar3&orientation=squarish',
+      message: 'Tôi rất hài lòng với dịch vụ đóng gói. Hàng được đóng gói cẩn thận, không bị hỏng hóc gì trong quá trình vận chuyển. Sẽ tiếp tục sử dụng dịch vụ.',
       rating: 5,
       date: '3 tuần trước'
-    },
-    {
-      id: 4,
-      name: 'Lê Hoàng Nam',
-      location: 'Hải Phòng → Nhật Bản',
-      message: 'Cảm ơn team đã giúp tôi gửi thuốc men cho mẹ ở Nhật. Dịch vụ chuyên nghiệp, giá cả hợp lý và quan trọng nhất là tin cậy được. Sẽ tiếp tục sử dụng dịch vụ.',
-      rating: 5,
-      date: '1 tháng trước'
-    },
-    {
-      id: 5,
-      name: 'Võ Thị Mai',
-      location: 'Cần Thơ → Đức',
-      message: 'Gửi đặc sản Việt Nam cho bạn bè ở Đức thông qua dịch vụ này. Hàng đến nơi vẫn tươi ngon, đóng gói rất cẩn thận. Bạn bè rất thích và khen ngợi.',
-      rating: 5,
-      date: '2 tháng trước'
-    },
-    {
-      id: 6,
-      name: 'Đỗ Văn Tùng',
-      location: 'Hà Nội → Singapore',
-      message: 'Dịch vụ đáng tin cậy! Tôi thường xuyên gửi hàng cho đối tác ở Singapore. Mỗi lần đều được hỗ trợ tận tình, giao hàng đúng hẹn, chất lượng ổn định.',
-      rating: 5,
-      date: '3 tháng trước'
     }
   ];
 
@@ -65,7 +45,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="testimonials" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -85,7 +65,6 @@ export default function Testimonials() {
               >
                 <i className="ri-arrow-left-s-line text-xl text-gray-600"></i>
               </button>
-              
               <div className="flex space-x-2">
                 {testimonials.map((_, index) => (
                   <button
@@ -97,7 +76,6 @@ export default function Testimonials() {
                   />
                 ))}
               </div>
-              
               <button
                 onClick={nextTestimonial}
                 className="w-12 h-12 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors cursor-pointer"
@@ -112,11 +90,11 @@ export default function Testimonials() {
                   <i key={i} className="ri-star-fill text-yellow-400 text-xl"></i>
                 ))}
               </div>
-              
+
               <blockquote className="text-lg md:text-xl text-gray-700 italic leading-relaxed mb-8">
                 "{testimonials[currentTestimonial].message}"
               </blockquote>
-              
+
               <div className="flex items-center justify-center space-x-4">
                 <div className="w-16 h-16 bg-[#ce1c40] rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-xl">

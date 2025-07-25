@@ -30,7 +30,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">Vận chuyển quốc tế</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Mua hàng giúp</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Đóng gói chuyên nghiệp</a></li>
+              <li><a href="#contact" className="hover:text-white transition-colors">Đóng gói chuyên nghiệp</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Hỗ trợ 24/7</a></li>
             </ul>
           </div>
@@ -40,7 +40,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li><a href="#" className="hover:text-white transition-colors">Hướng dẫn gửi hàng</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Theo dõi đơn hàng</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Câu hỏi thường gặp</a></li>
+              <li><a href="/faq" className="hover:text-white transition-colors">Câu hỏi thường gặp</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Chính sách bảo hiểm</a></li>
             </ul>
           </div>
@@ -71,3 +71,4 @@ export default function Footer() {
     </footer>
   );
 }
+

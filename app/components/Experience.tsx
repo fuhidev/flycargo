@@ -5,22 +5,26 @@ export default function Experience() {
     {
       number: '10+',
       label: 'Năm Kinh Nghiệm',
-      description: 'Hoạt động trong lĩnh vực vận chuyển'
+      description: 'Hoạt động trong lĩnh vực vận chuyển',
+      icon: 'ri-time-line'
     },
     {
-      number: '500+',
-      label: 'Lượt Vận Chuyển',
-      description: 'Thành công đến khắp thế giới'
+      number: '50K+',
+      label: 'Đơn Hàng Thành Công',
+      description: 'Thành công đến khắp thế giới',
+      icon: 'ri-checkbox-circle-line'
     },
     {
-      number: '100%',
-      label: 'Uy Tín',
-      description: 'Đảm bảo hàng đến đúng người'
+      number: '200+',
+      label: 'Quốc Gia & Vùng Lãnh Thổ',
+      description: 'Đảm bảo hàng đến đúng người',
+      icon: 'ri-global-line'
     },
     {
-      number: '24/7',
-      label: 'Hỗ Trợ',
-      description: 'Đến khi hàng đến tay người nhận'
+      number: '99%',
+      label: 'Khách Hàng Hài Lòng',
+      description: 'Đến khi hàng đến tay người nhận',
+      icon: 'ri-star-line'
     }
   ];
 
@@ -48,7 +52,7 @@ export default function Experience() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section id="experience" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">

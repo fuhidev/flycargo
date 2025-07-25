@@ -84,6 +84,51 @@ export default function PricingTable() {
     }
   ];
 
+  const pricingPlans = [
+    {
+      name: 'Gói Cơ Bản',
+      price: '25.000đ',
+      unit: '/kg',
+      description: 'Dành cho khách hàng gửi ít hàng',
+      features: [
+        'Vận chuyển tiêu chuẩn',
+        'Theo dõi đơn hàng',
+        'Hỗ trợ email',
+        'Thời gian giao hàng 7-10 ngày'
+      ],
+      popular: false
+    },
+    {
+      name: 'Gói Phổ Biến',
+      price: '20.000đ',
+      unit: '/kg',
+      description: 'Phù hợp cho khách hàng thường xuyên',
+      features: [
+        'Vận chuyển nhanh',
+        'Theo dõi đơn hàng',
+        'Hỗ trợ 24/7',
+        'Thời gian giao hàng 5-7 ngày',
+        'Đóng gói miễn phí'
+      ],
+      popular: true
+    },
+    {
+      name: 'Gói Cao Cấp',
+      price: '15.000đ',
+      unit: '/kg',
+      description: 'Dành cho khách hàng VIP',
+      features: [
+        'Vận chuyển siêu nhanh',
+        'Theo dõi đơn hàng',
+        'Hỗ trợ 24/7',
+        'Thời gian giao hàng 3-5 ngày',
+        'Đóng gói miễn phí',
+        'Bảo hiểm hàng hóa'
+      ],
+      popular: false
+    }
+  ];
+
   return (
     <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
